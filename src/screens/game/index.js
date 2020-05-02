@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import Board from "../../components/board/index";
 
+import {calculateWinner} from '../../utils/utils';
+
 const StyledGame = styled.div`
   position: absolute;
   top: 50%;
