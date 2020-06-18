@@ -2,19 +2,21 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-  background-color: #2980b9;
-  border: 1px solid gray;
+  background-color: #c7e8f3;
+  margin: 10px;
+  border: 1px solid #fff;
+  color: #ff8552;
+  border-radius: 5px;
   float: left;
   margin-right: -1px;
   margin-top: 1px;
   padding: 0;
   width: 100px;
   height: 100px;
-  text-align: center;
   font-size: 40px;
   font-weight: bold;
-  line-height: 100px;
   cursor: pointer;
+  font-family: "MuseoModerno-Medium";
 
   &:focus {
     outline: none;

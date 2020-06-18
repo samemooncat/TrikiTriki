@@ -1,9 +1,24 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 import Board from "../../components/board/index";
 
-import {calculateWinner} from '../../utils/utils';
+import { calculateWinner } from "../../utils/utils";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #07beb8;
+  }
+`;
+
+const StyledTitle = styled.h1`
+  text-align: center;
+  margin-top: 10px;
+  font-size: 40px;
+  font-family: "MuseoModerno-Light";
+  color: #ffff;
+`;
 
 const StyledGame = styled.div`
   position: absolute;
@@ -32,6 +47,10 @@ export default class Game extends Component {
     const record = history.slice(0, stepNumer + 1);
     const current = record[history.length - 1];
     const squares = current.squares.slice();
+    const winner = calculateWinner(squares);
+    if (winner || squares[index]) {
+      return;
+    }
     squares[index] = xIsNext ? "X" : "O";
     this.setState({
       history: record.concat({ squares: squares }),
@@ -44,15 +63,29 @@ export default class Game extends Component {
     const { history, stepNumer } = this.state;
     const current = history[stepNumer];
 
+    // const winner = calculateWinner(current.squares);
+    // const moves = history.map((step, move) => {
+    //   const checkMove = move ? `Go to number ${step}` : "Start the game";
+    //   return {
+    //     <li>
+    //       <button onClick=""></button>
+    //     </li>
+    //   }
+    // });
+
     return (
-      <StyledGame>
-        <StyledGameBoard>
-          <Board
-            onClick={(index) => this.handleClick(index)}
-            squares={current.squares}
-          ></Board>
-        </StyledGameBoard>
-      </StyledGame>
+      <>
+      <GlobalStyle/>
+        <StyledTitle>Tic Tac Toe</StyledTitle>
+        <StyledGame>
+          <StyledGameBoard>
+            <Board
+              onClick={(index) => this.handleClick(index)}
+              squares={current.squares}
+            ></Board>
+          </StyledGameBoard>
+        </StyledGame>
+        </>
     );
   }
 }

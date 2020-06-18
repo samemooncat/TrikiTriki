@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'MuseoModerno-Light';
+  src: url('assets/fonts/MuseoModerno-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MuseoModerno-Medium';
+  src: url('assets/fonts/MuseoModerno-Medium.ttf') format('truetype');
+}
