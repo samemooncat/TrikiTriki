@@ -22,7 +22,7 @@ const StyledTitle = styled.h1`
 
 const StyledGame = styled.div`
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -30,7 +30,18 @@ const StyledGame = styled.div`
   margin: 0 auto;
 `;
 
-const StyledGameBoard = styled.div``;
+const StyledGameBoard = styled.div`
+  min-width: 350px;
+`;
+
+const StyledGameInfo = styled.div`
+  margin-left: 20;
+`;
+
+const StyledPlayerTitle = styled.h2`
+  text-align: center;
+  color: #36827f;
+`;
 
 export default class Game extends Component {
   constructor(props) {
@@ -60,22 +71,29 @@ export default class Game extends Component {
   }
 
   render() {
-    const { history, stepNumer } = this.state;
+    const { history, stepNumer, xIsNext } = this.state;
     const current = history[stepNumer];
 
-    // const winner = calculateWinner(current.squares);
+    const winner = calculateWinner(current.squares);
     // const moves = history.map((step, move) => {
-    //   const checkMove = move ? `Go to number ${step}` : "Start the game";
-    //   return {
-    //     <li>
-    //       <button onClick=""></button>
+    //   const checkMove = move ? `Go to number ${move}` : "Start the game";
+    //   return (
+    //     <li key={move}>
+    //       <p>{checkMove}</p>
     //     </li>
-    //   }
+    //   );
     // });
+
+    let status;
+    if (winner) {
+      status = `¡The winner is ${winner}!`;
+    } else {
+      status = "Next player is " + (xIsNext ? "X" : "O");
+    }
 
     return (
       <>
-      <GlobalStyle/>
+        <GlobalStyle />
         <StyledTitle>Tic Tac Toe</StyledTitle>
         <StyledGame>
           <StyledGameBoard>
@@ -85,7 +103,11 @@ export default class Game extends Component {
             ></Board>
           </StyledGameBoard>
         </StyledGame>
-        </>
+        <StyledGameInfo>
+          <StyledPlayerTitle>{status}</StyledPlayerTitle>
+          {/* <div>{moves}</div> */}
+        </StyledGameInfo>
+      </>
     );
   }
 }
